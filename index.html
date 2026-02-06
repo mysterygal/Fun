@@ -163,9 +163,46 @@
       #yes { left: 8%; }
       #no { left: 55%; }
     }
+
+    /* DARK MODE */
+.dark-theme {
+  background: radial-gradient(circle at top, #2b2b2b, #000);
+  transition: background 1s ease;
+}
+
+/* Ghost container */
+#ghostContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Individual ghosts */
+.ghost {
+  position: absolute;
+  font-size: 40px;
+  opacity: 0.8;
+  animation: floatGhost linear infinite;
+}
+
+@keyframes floatGhost {
+  from {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-120vh);
+    opacity: 1;
+  }
+}
+
   </style>
 </head>
-
+<div id="ghostContainer"></div>
 <body>
 
   <div class="card">
@@ -177,7 +214,7 @@
       <button id="no">No 🙈</button>
     </div>
 
-    <div class="hint">Some love stories don’t allow “no” ✨</div>
+    <div class="hint">Some love stories don’t allow “Yes”..because they are Horrer stories...🍂🧡👻🎃 ✨</div>
   </div>
 
   <!-- Sounds -->
@@ -190,8 +227,10 @@
     const card = document.querySelector(".card");
     const hoverSound = document.getElementById("hoverSound");
     const yesSound = document.getElementById("yesSound");
+    const ghostContainer = document.getElementById("ghostContainer");
+    const bottomText = document.getElementById("bottomText");
 
-    noBtn.addEventListener("mouseenter", () => {
+    yesBtn.addEventListener("mouseenter", () => {
       hoverSound.currentTime = 0;
       hoverSound.play();
 
@@ -201,23 +240,52 @@
       const maxX = cardRect.width - btnRect.width - 10;
       const maxY = cardRect.height - btnRect.height - 10;
 
-      noBtn.style.left = Math.random() * maxX + "px";
-      noBtn.style.top = Math.random() * maxY + "px";
+      yesBtn.style.left = Math.random() * maxX + "px";
+      yesBtn.style.top = Math.random() * maxY + "px";
     });
 
     yesBtn.addEventListener("click", () => {
-      yesSound.play();
+  // Change theme
+  document.body.classList.add("dark-theme");
 
-      confetti({
-        particleCount: 260,
-        spread: 120,
-        origin: { y: 0.65 }
-      });
+  // Change text
+  bottomText.textContent = "You chose… darkness 👻💔";
 
-      setTimeout(() => {
-        alert("YAY 💕 I can’t wait for Valentine’s Day with you!");
-      }, 500);
-    });
+  // Spawn ghosts
+  for (let i = 0; i < 12; i++) {
+    createGhost();
+  }
+});
+
+function createGhost() {
+  const ghost = document.createElement("div");
+  ghost.classList.add("ghost");
+  ghost.textContent = "👻";
+
+  ghost.style.left = Math.random() * 100 + "vw";
+  ghost.style.animationDuration = 6 + Math.random() * 6 + "s";
+
+  ghostContainer.appendChild(ghost);
+
+  // Remove ghost after animation
+  setTimeout(() => {
+    ghost.remove();
+  }, 12000);
+}
+
+    // yesBtn.addEventListener("click", () => {
+    //   yesSound.play();
+
+    //   confetti({
+    //     particleCount: 260,
+    //     spread: 120,
+    //     origin: { y: 0.65 }
+    //   });
+
+    //   setTimeout(() => {
+    //     alert("YAY 💕 I can’t wait for Valentine’s Day with you!");
+    //   }, 500);
+    // });
 
     function createHeart() {
       const heart = document.createElement("div");
@@ -237,4 +305,5 @@
 
 </body>
 </html>
+
 
