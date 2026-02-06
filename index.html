@@ -239,8 +239,8 @@
 <div id="ghostContainer"></div>
   <div class="card">
     <div class="emoji">🐱❤️</div>
-    <h2>Nikhil,<br>will you be my Valentine?</h2>
-
+    
+   <h2 id="cardText">Nikhil,<br>will you be my Valentine?</h2>
     <div class="buttons">
       <button id="yes">Yes 💖</button>
       <button id="no">No 🙈</button>
@@ -262,6 +262,7 @@
     const ghostContainer = document.getElementById("ghostContainer");
     const bottomText = document.querySelector(".hint");
     const Emojis = document.querySelector(".emoji");
+    const cardText = document.getElementById("cardText");
 
     yesBtn.addEventListener("mouseenter", () => {
       hoverSound.currentTime = 0;
@@ -279,8 +280,10 @@
 
     noBtn.addEventListener("click", () => {
   document.body.classList.add("dark-theme");
+  cardText.innerHTML = "Now you have become<br>my vampire forever… 🧛‍♂️🩸";
 
-  bottomText.textContent = "You chose… darkness 👻 The spirits are watching.";
+
+  bottomText.textContent = "You chose… darkness 👻 The spirits are watching.There is no escape now 👻";
     Emojis.textContent="🎃👻";
 
   // Stop hearts
@@ -352,6 +355,7 @@ function createGhost() {
 
 </body>
 </html>
+
 
 
 
