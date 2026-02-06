@@ -266,7 +266,7 @@ function createGhost() {
   ghost.style.animationDuration = 6 + Math.random() * 6 + "s";
 
   ghostContainer.appendChild(ghost);
-
+  setInterval(floatghoast, 380);
   // Remove ghost after animation
   setTimeout(() => {
     ghost.remove();
@@ -300,11 +300,26 @@ function createGhost() {
       setTimeout(() => heart.remove(), 8000);
     }
 
+     function floatghoast() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = Math.random() > 0.5 ? "👻🎃" : "👻🎃";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 22 + 14 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+      heart.style.opacity = Math.random() * 0.5 + 0.4;
+
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+
+
     setInterval(createHeart, 380);
   </script>
 
 </body>
 </html>
+
 
 
 
