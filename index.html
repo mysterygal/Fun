@@ -222,8 +222,8 @@
   <audio id="yesSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"></audio>
 
   <script>
-    const noBtn = document.getElementById("yes");
-    const yesBtn = document.getElementById("no");
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
     const card = document.querySelector(".card");
     const hoverSound = document.getElementById("hoverSound");
     const yesSound = document.getElementById("yesSound");
@@ -244,7 +244,7 @@
       yesBtn.style.top = Math.random() * maxY + "px";
     });
 
-    yesBtn.addEventListener("click", () => {
+    noBtn.addEventListener("click", () => {
   // Change theme
   document.body.classList.add("dark-theme");
 
@@ -305,5 +305,6 @@ function createGhost() {
 
 </body>
 </html>
+
 
 
