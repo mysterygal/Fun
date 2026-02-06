@@ -261,6 +261,7 @@
     const yesSound = document.getElementById("yesSound");
     const ghostContainer = document.getElementById("ghostContainer");
     const bottomText = document.querySelector(".hint");
+    const Emojis = document.querySelector(".emoji");
 
     yesBtn.addEventListener("mouseenter", () => {
       hoverSound.currentTime = 0;
@@ -280,6 +281,7 @@
   document.body.classList.add("dark-theme");
 
   bottomText.textContent = "You chose… darkness 👻 The spirits are watching.";
+    Emojis.textContent="🎃👻👻🎃👻👻🎃👻👻🎃";
 
   // Stop hearts
   clearInterval(heartInterval);
@@ -350,6 +352,7 @@ function createGhost() {
 
 </body>
 </html>
+
 
 
 
