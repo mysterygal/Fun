@@ -200,11 +200,43 @@
   }
 }
 
+/* SPOOKY CARD MODE */
+.dark-theme .card {
+  background: rgba(10, 10, 10, 0.85);
+  box-shadow: 0 0 60px rgba(0,0,0,0.9);
+}
+
+.dark-theme h2 {
+  color: #e6e6e6;
+}
+
+.dark-theme .hint {
+  color: #b0b0b0;
+  font-style: italic;
+}
+
+/* Kill cute glow */
+.dark-theme .card::before {
+  opacity: 0;
+}
+
+/* Buttons spooky */
+.dark-theme #yes {
+  background: linear-gradient(135deg, #444, #111);
+  box-shadow: none;
+}
+
+.dark-theme #no {
+  background: #111;
+  color: #aaa;
+}
+
+
   </style>
 </head>
-<div id="ghostContainer"></div>
-<body>
 
+<body>
+<div id="ghostContainer"></div>
   <div class="card">
     <div class="emoji">🐱❤️</div>
     <h2>Nikhil,<br>will you be my Valentine?</h2>
@@ -228,7 +260,7 @@
     const hoverSound = document.getElementById("hoverSound");
     const yesSound = document.getElementById("yesSound");
     const ghostContainer = document.getElementById("ghostContainer");
-    const bottomText = document.getElementById("bottomText");
+    const bottomText = document.querySelector(".hint");
 
     yesBtn.addEventListener("mouseenter", () => {
       hoverSound.currentTime = 0;
@@ -245,17 +277,15 @@
     });
 
     noBtn.addEventListener("click", () => {
-  // Change theme
   document.body.classList.add("dark-theme");
 
-  // Change text
-  bottomText.textContent = "You chose… darkness 👻💔";
+  bottomText.textContent = "You chose… darkness 👻 The spirits are watching.";
 
-  // Spawn ghosts
-  for (let i = 0; i < 12; i++) {
-    createGhost();
-    floatghoast();
-  }
+  // Stop hearts
+  clearInterval(heartInterval);
+
+  // Spawn ghosts continuously
+  setInterval(createGhost, 600);
 });
 
 function createGhost() {
@@ -267,12 +297,13 @@ function createGhost() {
   ghost.style.animationDuration = 6 + Math.random() * 6 + "s";
 
   ghostContainer.appendChild(ghost);
-  setInterval(floatghoast, 380);
+
   // Remove ghost after animation
   setTimeout(() => {
     ghost.remove();
   }, 12000);
 }
+  const heartInterval = setInterval(createHeart, 380);
 
     // yesBtn.addEventListener("click", () => {
     //   yesSound.play();
@@ -315,11 +346,11 @@ function createGhost() {
     }
 
 
-    setInterval(createHeart, 380);
   </script>
 
 </body>
 </html>
+
 
 
 
