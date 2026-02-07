@@ -279,12 +279,19 @@
     });
 
     noBtn.addEventListener("click", () => {
-  document.body.classList.add("dark-theme");
-  cardText.innerHTML = "Now you have become<br>my vampire forever… 🧛‍♂️🩸";
+    document.body.classList.add("dark-theme");
+    cardText.innerHTML = 
+                     `
+                    <img 
+                      src="https://www.gif-vif.com/desi_gifs/koi-aapse-pyar-kyu-karega-aniruddhacharya-ji-maharaj-indian-meme-tempate-6fb23b2a98.gif"
+                      alt="Meme GIF"
+                      class="card-image"
+                    >
+                  `;
 
 
   bottomText.textContent = "You chose… darkness 👻 The spirits are watching.There is no escape now 👻";
-    Emojis.textContent="🎃👻";
+  Emojis.textContent="🎃👻";
 
   // Stop hearts
   clearInterval(heartInterval);
